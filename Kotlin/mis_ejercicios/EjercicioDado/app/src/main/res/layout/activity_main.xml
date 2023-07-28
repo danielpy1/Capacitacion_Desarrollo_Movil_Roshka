@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dice Exercise"
+        android:layout_marginTop="40dp"/>
+
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@drawable/d0"
+        android:layout_marginTop="40dp"/>
+
+    <Button
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:id="@+id/throwDice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Throw Dice" />
+
+    <Button
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset" />
+
+</LinearLayout>
