@@ -1,59 +1,140 @@
 package com.cursosandroidant.ejerciciotrivia
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.cursosandroidant.ejerciciotrivia.model.QuestionsProvider
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FirstFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FirstFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var btnAnswer1: Button
+    lateinit var btnAnswer2: Button
+    lateinit var btnAnswer3: Button
+    lateinit var btnAnswer4: Button
+    lateinit var textPregunta: TextView
+    val  QuestionList = QuestionsProvider.questions
+    var numeroPreguntas = QuestionList.size
+    var score = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        val fragment_first = inflater.inflate(R.layout.fragment_first, container, false)
+        var preguntaActual = 0
+
+        textPregunta = fragment_first.findViewById<TextView>(R.id.textQuestion)
+        btnAnswer1 = fragment_first.findViewById<Button>(R.id.answer1)
+        btnAnswer2 = fragment_first.findViewById<Button>(R.id.answer2)
+        btnAnswer3 = fragment_first.findViewById<Button>(R.id.answer3)
+        btnAnswer4 = fragment_first.findViewById<Button>(R.id.answer4)
+
+        btnAnswer1.setBackgroundResource(R.drawable.green_button)
+
+
+        btnAnswer1.setOnClickListener {
+            if (checkQuestion(btnAnswer1.text.toString(), preguntaActual)) {
+                score++
+                btnAnswer1.setTextAppearance(R.style.GreenButtonStyle)
+                preguntaActual++
+                setearValores(preguntaActual)
+
+            }else{
+                btnAnswer1.setTextAppearance(R.style.RedButtonStyle)
+                preguntaActual++
+                setearValores(preguntaActual)
+            }
+        }
+        btnAnswer2.setOnClickListener {
+            if (checkQuestion(btnAnswer2.text.toString(), preguntaActual)) {
+                score++
+                btnAnswer2.setTextAppearance(R.style.GreenButtonStyle)
+                preguntaActual++
+                setearValores(preguntaActual)
+            }else{
+                btnAnswer2.setTextAppearance(R.style.RedButtonStyle)
+                preguntaActual++
+                setearValores(preguntaActual)
+            }
+        }
+        btnAnswer3.setOnClickListener {
+            if (checkQuestion(btnAnswer3.text.toString(), preguntaActual)) {
+                score++
+                btnAnswer3.setTextAppearance(R.style.GreenButtonStyle)
+                preguntaActual++
+                setearValores(preguntaActual)
+            }else{
+                btnAnswer3.setTextAppearance(R.style.RedButtonStyle)
+                preguntaActual++
+                setearValores(preguntaActual)
+            }
+        }
+        btnAnswer4.setOnClickListener {
+            if (checkQuestion(btnAnswer4.text.toString(), preguntaActual)) {
+                score++
+                btnAnswer4.setTextAppearance(R.style.GreenButtonStyle)
+                preguntaActual++
+                setearValores(preguntaActual)
+            }else{
+                btnAnswer4.setTextAppearance(R.style.RedButtonStyle)
+                preguntaActual++
+                setearValores(preguntaActual)
+            }
+        }
+        setearValores(preguntaActual)
+
+        return fragment_first
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FirstFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FirstFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun checkQuestion(respuesta: String, preguntaActual: Int): Boolean {
+        return if (respuesta == QuestionsProvider.questions[preguntaActual].respuesta) true else false
+    }
+
+    fun setearValores(preguntaActual: Int){
+        val navController = findNavController()
+
+        if(preguntaActual== 0){
+            textPregunta.text = QuestionList[preguntaActual].pregunta
+            btnAnswer1.text = QuestionList[preguntaActual].opciones[0]
+            btnAnswer2.text = QuestionList[preguntaActual].opciones[1]
+            btnAnswer3.text = QuestionList[preguntaActual].opciones[2]
+            btnAnswer4.text = QuestionList[preguntaActual].opciones[3]
+        }else{
+
+            Handler(Looper.getMainLooper()).postDelayed({
+
+//                btnAnswer1.setTextAppearance(R.style.DefaultButtonStyle)
+//                btnAnswer2.setTextAppearance(R.style.DefaultButtonStyle)
+//                btnAnswer3.setTextAppearance(R.style.DefaultButtonStyle)
+//                btnAnswer4.setTextAppearance(R.style.DefaultButtonStyle)
+
+                if (preguntaActual >= numeroPreguntas) {
+                    //hacer un intent a la pantalla de resultados
+                    val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(score)
+                    navController.navigate(action)
+
+                } else {
+                    textPregunta.text = QuestionList[preguntaActual].pregunta
+                    btnAnswer1.text = QuestionList[preguntaActual].opciones[0]
+                    btnAnswer2.text = QuestionList[preguntaActual].opciones[1]
+                    btnAnswer3.text = QuestionList[preguntaActual].opciones[2]
+                    btnAnswer4.text = QuestionList[preguntaActual].opciones[3]
                 }
-            }
+
+            }, 500)
+
+        }
+
     }
 }

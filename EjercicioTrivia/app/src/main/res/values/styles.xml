@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RedButtonStyle" >
+        <item name="android:background">@drawable/red_button</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- Color blanco para el texto del botón -->
+        <!-- Puedes agregar más atributos para personalizar el estilo según tus necesidades -->
+    </style>
+    <style name="GreenButtonStyle" >
+        <item name="android:background">@drawable/green_button</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- Color blanco para el texto del botón -->
+        <!-- Puedes agregar más atributos para personalizar el estilo según tus necesidades -->
+    </style>
+    <style name="DefaultButtonStyle" >
+        <item name="android:background">@drawable/default_button</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- Color blanco para el texto del botón -->
+        <!-- Puedes agregar más atributos para personalizar el estilo según tus necesidades -->
+    </style>
+</resources>

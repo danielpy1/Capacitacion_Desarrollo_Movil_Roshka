@@ -8,62 +8,76 @@
 
     <LinearLayout
         android:id="@+id/Questions"
-        android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/Answers"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pregunta"
             android:gravity="center"
-            android:textSize="20sp"/>
+            android:text="Pregunta"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textQuestion"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="?"
+            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:textSize="20sp"/>
+            android:text="?"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/Answers"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Questions"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center">
+        app:layout_constraintTop_toBottomOf="@+id/Questions">
 
         <Button
+            android:id="@+id/answer1"
+            style="@style/DefaultButtonStyle"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:id="@+id/answer1">
+            android:layout_marginBottom="10dp">
 
         </Button>
 
         <Button
+            android:id="@+id/answer2"
+            style="@style/DefaultButtonStyle"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:id="@+id/answer2">
+            android:layout_marginBottom="10dp">
 
         </Button>
 
         <Button
+            android:id="@+id/answer3"
+            style="@style/DefaultButtonStyle"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:id="@+id/answer3">
+            android:layout_marginBottom="10dp">
+
+        </Button>
+
+        <Button
+            android:id="@+id/answer4"
+            style="@style/DefaultButtonStyle"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
 
         </Button>
 
